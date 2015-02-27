@@ -30,6 +30,8 @@ module TrackerApi
       attribute :tasks, Array[TrackerApi::Resources::Task]
       attribute :updated_at, DateTime
       attribute :url, String
+      attribute :before_id, Integer
+      attribute :after_id, Integer
 
       # @return [String] Comma separated list of labels.
       def label_list
