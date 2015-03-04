@@ -77,6 +77,16 @@ module TrackerApi
 
         changes_applied
       end
+
+      # update labels.This method can also be used to remove labels.
+      def add_labels(*new_labels)
+        raise ArgumentError, 'Can not update a story with an unknown project_id.' if project_id.nil?
+        raise ArgumentError, 'Provide at lease one label name' if new_labels.empty?
+
+        Endpoints::Story.new(client).update(self, {:labels => new_labels.map{|l| {:name => l.to_s}}})
+
+        changes_applied
+      end
     end
   end
 end
