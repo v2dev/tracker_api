@@ -186,7 +186,7 @@ module TrackerApi
       body    = options[:body]
       headers = options[:headers]
 
-      if (method == :post || method == :put) && options[:body].blank?
+      if (method == :post || method == :put) && options[:body].empty?
         body                    = params.to_json
         headers['Content-Type'] = 'application/json'
 
