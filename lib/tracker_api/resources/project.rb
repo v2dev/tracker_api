@@ -119,6 +119,13 @@ module TrackerApi
       def create_story(params)
         Endpoints::Story.new(client).create(id, params)
       end
+
+      # @file_name [String] name of the file to be uploaded. Full path to be specified
+      # @content_type [String] content type of the file.
+      # @return [FileAttachment] newly created FileAttachment.
+      def add_attachment(file_name, content_type)
+        Endpoints::FileAttachment.new(client).create(id, file_name, content_type)
+      end
     end
   end
 end

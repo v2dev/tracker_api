@@ -33,6 +33,7 @@ module TrackerApi
     autoload :Story, 'tracker_api/endpoints/story'
     autoload :Tasks, 'tracker_api/endpoints/tasks'
     autoload :Comments, 'tracker_api/endpoints/comments'
+    autoload :FileAttachment, 'tracker_api/endpoints/file_attachment'
   end
 
   module Resources
@@ -54,5 +55,6 @@ module TrackerApi
     autoload :Task, 'tracker_api/resources/task'
     autoload :TimeZone, 'tracker_api/resources/time_zone'
     autoload :Comment, 'tracker_api/resources/comment'
+    autoload :FileAttachment, 'tracker_api/resources/file_attachment'
   end
 end
