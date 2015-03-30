@@ -87,6 +87,16 @@ module TrackerApi
 
         changes_applied
       end
+
+      # Add an existing attachment to the story
+      def add_comment_with_attachment(text, file_attachment)
+        raise ArgumentError, 'Can not update a story with an unknown project_id.' if project_id.nil?
+
+        comment = {:text => text, :file_attachments => [file_attachment.attributes]}
+        Endpoints::Comments.new(client).create_with_attachment(project_id, id, text, file_attachment)
+
+        changes_applied
+      end
     end
   end
 end
