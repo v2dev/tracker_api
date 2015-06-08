@@ -72,6 +72,15 @@ module TrackerApi
       request(:put, parse_query_and_convenience_headers(path, options))
     end
 
+    # Make a HTTP DELETE request
+    #
+    # @param path [String] The path, relative to api endpoint
+    # @param options [Hash] Query and header params for request
+    # @return [Faraday::Response]
+    def delete(path, options = {})
+      request(:delete, parse_query_and_convenience_headers(path, options))
+    end
+
     # Make one or more HTTP GET requests, optionally fetching
     # the next page of results from information passed back in headers
     # based on value in {#auto_paginate}.
@@ -122,7 +131,7 @@ module TrackerApi
     # @param [Hash] params
     # @return [Array[TrackerApi::Resources::Project]]
     def create_project(params={})
-      Endpoints::Project.new(self).post(params)
+      Endpoints::Project.new(self).create(params)
     end
 
     # Get project
@@ -131,6 +140,21 @@ module TrackerApi
     # @return [TrackerApi::Resources::Project]
     def project(id, params={})
       Endpoints::Project.new(self).get(id, params)
+    end
+
+    # Put project
+    #
+    # @param [Hash] params
+    # @return [TrackerApi::Resources::Project]
+    def update_project(id, params={})
+      Endpoints::Project.new(self).update(id, params)
+    end
+
+    # Delete project
+    #
+    # @return [TrackerApi::Resources::Project]
+    def delete_project(id)
+      Endpoints::Project.new(self).delete(id)
     end
 
     # Get information about the authenticated user
