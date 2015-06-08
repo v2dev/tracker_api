@@ -117,6 +117,14 @@ module TrackerApi
       Endpoints::Projects.new(self).get(params)
     end
 
+    # Post project
+    #
+    # @param [Hash] params
+    # @return [Array[TrackerApi::Resources::Project]]
+    def create_project(params={})
+      Endpoints::Project.new(self).post(params)
+    end
+
     # Get project
     #
     # @param [Hash] params
