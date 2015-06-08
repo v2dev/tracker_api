@@ -126,35 +126,12 @@ module TrackerApi
       Endpoints::Projects.new(self).get(params)
     end
 
-    # Post project
-    #
-    # @param [Hash] params
-    # @return [Array[TrackerApi::Resources::Project]]
-    def create_project(params={})
-      Endpoints::Project.new(self).create(params)
-    end
-
     # Get project
     #
     # @param [Hash] params
     # @return [TrackerApi::Resources::Project]
     def project(id, params={})
       Endpoints::Project.new(self).get(id, params)
-    end
-
-    # Put project
-    #
-    # @param [Hash] params
-    # @return [TrackerApi::Resources::Project]
-    def update_project(id, params={})
-      Endpoints::Project.new(self).update(id, params)
-    end
-
-    # Delete project
-    #
-    # @return [TrackerApi::Resources::Project]
-    def delete_project(id)
-      Endpoints::Project.new(self).delete(id)
     end
 
     # Get information about the authenticated user
