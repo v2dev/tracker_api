@@ -9,6 +9,10 @@ module TrackerApi
       attribute :email, String
       attribute :initials, String
       attribute :username, String
+
+      def required_attributes_hash
+        {name: 'V2 Employee', initials: 'V2'}
+      end
     end
   end
 end
