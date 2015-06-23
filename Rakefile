@@ -15,4 +15,8 @@ Rake::TestTask.new(:test) do |t|
   t.verbose = true
 end
 
+task :console do
+  exec "irb -r tracker_api -I ./lib"
+end
+
 task :default => :test
