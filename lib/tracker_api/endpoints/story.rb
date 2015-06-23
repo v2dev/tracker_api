@@ -32,6 +32,11 @@ module TrackerApi
 
         story.attributes = data
       end
+
+      def add_label(story, params = {})
+        raise ArgumentError, 'Valid story required to update.' unless story.instance_of?(Resources::Story)
+        data = client.post("/projects/#{story.project_id}/stories/#{story.id}/labels", params: params).body
+      end
     end
   end
 end
