@@ -202,15 +202,25 @@ module TrackerApi
         params = {}
       end
 
-      @last_response = response = connection.send(method) do |req|
-        req.url(url)
-        req.headers.merge!(headers)
-        req.params.merge!(params)
-        req.body = body
+      response = nil
+
+      begin
+        tries ||= 3
+        @last_response = response = connection.send(method) do |req|
+          req.url(url)
+          req.headers.merge!(headers)
+          req.params.merge!(params)
+          req.body = body
+        end
+        response
+
+      rescue Faraday::Error::ClientError => e
+        if e.response[:status].between?(500, 520)  # retry calling the api if the response is any of 500 errors
+          sleep 1
+          retry unless (tries -= 1).zero?
+        end
+        raise TrackerApi::Error.new(e)
       end
-      response
-    rescue Faraday::Error::ClientError => e
-      raise TrackerApi::Error.new(e)
     end
 
     class Pagination
