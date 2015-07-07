@@ -203,7 +203,7 @@ module TrackerApi
       end
 
       response = nil
-
+      sleep 0.5   # Per PT we might be hitting their API too frequently.  So adding a 0.5 Sec pause.
       begin
         tries ||= 3
         @last_response = response = connection.send(method) do |req|
